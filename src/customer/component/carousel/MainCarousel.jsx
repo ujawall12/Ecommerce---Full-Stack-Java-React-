@@ -13,8 +13,6 @@ const MainCarousel = () => {
         <div>
             <AliceCarousel
                 items={items}
-                autoHeight
-                autoWidth
                 autoPlay
                 autoPlayInterval={2000}
                 infinite
