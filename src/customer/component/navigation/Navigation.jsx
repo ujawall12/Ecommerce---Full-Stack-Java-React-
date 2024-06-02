@@ -1,143 +1,12 @@
 import { Fragment, useState } from 'react'
 import {
     Dialog,
-    DialogPanel,
     Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
     Tab,
-    TabGroup,
-    TabList,
-    TabPanel,
-    TabPanels,
     Transition,
-    TransitionChild,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const navigation = {
-    categories: [
-        {
-            id: 'women',
-            name: 'Women',
-            featured: [
-                {
-                    name: 'New Arrivals',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-                    imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-                },
-                {
-                    name: 'Basic Tees',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-                    imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-                },
-            ],
-            sections: [
-                {
-                    id: 'clothing',
-                    name: 'Clothing',
-                    items: [
-                        { name: 'Tops', href: '#' },
-                        { name: 'Dresses', href: '#' },
-                        { name: 'Pants', href: '#' },
-                        { name: 'Denim', href: '#' },
-                        { name: 'Sweaters', href: '#' },
-                        { name: 'T-Shirts', href: '#' },
-                        { name: 'Jackets', href: '#' },
-                        { name: 'Activewear', href: '#' },
-                        { name: 'Browse All', href: '#' },
-                    ],
-                },
-                {
-                    id: 'accessories',
-                    name: 'Accessories',
-                    items: [
-                        { name: 'Watches', href: '#' },
-                        { name: 'Wallets', href: '#' },
-                        { name: 'Bags', href: '#' },
-                        { name: 'Sunglasses', href: '#' },
-                        { name: 'Hats', href: '#' },
-                        { name: 'Belts', href: '#' },
-                    ],
-                },
-                {
-                    id: 'brands',
-                    name: 'Brands',
-                    items: [
-                        { name: 'Full Nelson', href: '#' },
-                        { name: 'My Way', href: '#' },
-                        { name: 'Re-Arranged', href: '#' },
-                        { name: 'Counterfeit', href: '#' },
-                        { name: 'Significant Other', href: '#' },
-                    ],
-                },
-            ],
-        },
-        {
-            id: 'men',
-            name: 'Men',
-            featured: [
-                {
-                    name: 'New Arrivals',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
-                    imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
-                },
-                {
-                    name: 'Artwork Tees',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
-                    imageAlt:
-                        'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
-                },
-            ],
-            sections: [
-                {
-                    id: 'clothing',
-                    name: 'Clothing',
-                    items: [
-                        { name: 'Tops', href: '#' },
-                        { name: 'Pants', href: '#' },
-                        { name: 'Sweaters', href: '#' },
-                        { name: 'T-Shirts', href: '#' },
-                        { name: 'Jackets', href: '#' },
-                        { name: 'Activewear', href: '#' },
-                        { name: 'Browse All', href: '#' },
-                    ],
-                },
-                {
-                    id: 'accessories',
-                    name: 'Accessories',
-                    items: [
-                        { name: 'Watches', href: '#' },
-                        { name: 'Wallets', href: '#' },
-                        { name: 'Bags', href: '#' },
-                        { name: 'Sunglasses', href: '#' },
-                        { name: 'Hats', href: '#' },
-                        { name: 'Belts', href: '#' },
-                    ],
-                },
-                {
-                    id: 'brands',
-                    name: 'Brands',
-                    items: [
-                        { name: 'Re-Arranged', href: '#' },
-                        { name: 'Counterfeit', href: '#' },
-                        { name: 'Full Nelson', href: '#' },
-                        { name: 'My Way', href: '#' },
-                    ],
-                },
-            ],
-        },
-    ],
-    pages: [
-        { name: 'Company', href: '#' },
-        { name: 'Stores', href: '#' },
-    ],
-}
+import {navigation} from "./NavigationData";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -147,11 +16,12 @@ export default function Navigation() {
     const [open, setOpen] = useState(false)
 
     return (
-        <div className="bg-white">
+        <div className="bg-white z-50">
             {/* Mobile menu */}
-            <Transition show={open}>
-                <Dialog className="relative z-40 lg:hidden" onClose={setOpen}>
-                    <TransitionChild
+            <Transition show={open} as={Fragment}>
+                <Dialog className="relative z-40 lg:hidden" onClose={() => setOpen(false)}>
+                    <Transition.Child
+                        as={Fragment}
                         enter="transition-opacity ease-linear duration-300"
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
@@ -160,10 +30,11 @@ export default function Navigation() {
                         leaveTo="opacity-0"
                     >
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
-                    </TransitionChild>
+                    </Transition.Child>
 
                     <div className="fixed inset-0 z-40 flex">
-                        <TransitionChild
+                        <Transition.Child
+                            as={Fragment}
                             enter="transition ease-in-out duration-300 transform"
                             enterFrom="-translate-x-full"
                             enterTo="translate-x-0"
@@ -171,7 +42,7 @@ export default function Navigation() {
                             leaveFrom="translate-x-0"
                             leaveTo="-translate-x-full"
                         >
-                            <DialogPanel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+                            <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
                                 <div className="flex px-4 pb-2 pt-5">
                                     <button
                                         type="button"
@@ -185,9 +56,9 @@ export default function Navigation() {
                                 </div>
 
                                 {/* Links */}
-                                <TabGroup className="mt-2">
+                                <Tab.Group as="div" className="mt-2">
                                     <div className="border-b border-gray-200">
-                                        <TabList className="-mb-px flex space-x-8 px-4">
+                                        <Tab.List className="-mb-px flex space-x-8 px-4">
                                             {navigation.categories.map((category) => (
                                                 <Tab
                                                     key={category.name}
@@ -201,11 +72,11 @@ export default function Navigation() {
                                                     {category.name}
                                                 </Tab>
                                             ))}
-                                        </TabList>
+                                        </Tab.List>
                                     </div>
-                                    <TabPanels as={Fragment}>
+                                    <Tab.Panels as={Fragment}>
                                         {navigation.categories.map((category) => (
-                                            <TabPanel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
+                                            <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
                                                 <div className="grid grid-cols-2 gap-x-4">
                                                     {category.featured.map((item) => (
                                                         <div key={item.name} className="group relative text-sm">
@@ -242,10 +113,10 @@ export default function Navigation() {
                                                         </ul>
                                                     </div>
                                                 ))}
-                                            </TabPanel>
+                                            </Tab.Panel>
                                         ))}
-                                    </TabPanels>
-                                </TabGroup>
+                                    </Tab.Panels>
+                                </Tab.Group>
 
                                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                                     {navigation.pages.map((page) => (
@@ -281,8 +152,8 @@ export default function Navigation() {
                                         <span className="sr-only">, change currency</span>
                                     </a>
                                 </div>
-                            </DialogPanel>
-                        </TransitionChild>
+                            </Dialog.Panel>
+                        </Transition.Child>
                     </div>
                 </Dialog>
             </Transition>
@@ -311,21 +182,21 @@ export default function Navigation() {
                                     <span className="sr-only">Your Company</span>
                                     <img
                                         className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                        src="logo.jpg"
                                         alt=""
                                     />
                                 </a>
                             </div>
 
                             {/* Flyout menus */}
-                            <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch">
+                            <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                                 <div className="flex h-full space-x-8">
                                     {navigation.categories.map((category) => (
                                         <Popover key={category.name} className="flex">
                                             {({ open }) => (
                                                 <>
                                                     <div className="relative flex">
-                                                        <PopoverButton
+                                                        <Popover.Button
                                                             className={classNames(
                                                                 open
                                                                     ? 'border-indigo-600 text-indigo-600'
@@ -334,10 +205,11 @@ export default function Navigation() {
                                                             )}
                                                         >
                                                             {category.name}
-                                                        </PopoverButton>
+                                                        </Popover.Button>
                                                     </div>
 
                                                     <Transition
+                                                        as={Fragment}
                                                         enter="transition ease-out duration-200"
                                                         enterFrom="opacity-0"
                                                         enterTo="opacity-100"
@@ -345,7 +217,7 @@ export default function Navigation() {
                                                         leaveFrom="opacity-100"
                                                         leaveTo="opacity-0"
                                                     >
-                                                        <PopoverPanel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                                                        <Popover.Panel className="absolute inset-x-0 top-full z-50 text-sm text-gray-500">
                                                             {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                                                             <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
@@ -397,7 +269,7 @@ export default function Navigation() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </PopoverPanel>
+                                                        </Popover.Panel>
                                                     </Transition>
                                                 </>
                                             )}
@@ -414,7 +286,7 @@ export default function Navigation() {
                                         </a>
                                     ))}
                                 </div>
-                            </PopoverGroup>
+                            </Popover.Group>
 
                             <div className="ml-auto flex items-center">
                                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">

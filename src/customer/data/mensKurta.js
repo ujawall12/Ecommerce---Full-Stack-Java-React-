@@ -1,6 +1,6 @@
 export const mensKurta=[
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70",
+        "imageUrl": "https://assets.reebok.com/images/w_600,f_auto,q_auto/7091787bd0614b6594f4aab2001ed8e5_9366/Reebok_Legacy_Lifter_II_Shoes_White_H05143_01_standard.jpg ",
         "brand": "Majestic Man",
         "title": "Men Printed Pure Cotton Straight Kurta",
         "color": "Green",

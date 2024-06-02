@@ -10,7 +10,7 @@ const MainCarousel = () => {
     const items = mainCarouselData.map((item) => <img className = 'cursor-pointer carousel-image'
                                                       role = 'presentation' src={item.image}  alt=''/>);
     return (
-        <div>
+        <div className='relative z-10'>
             <AliceCarousel
                 items={items}
                 autoPlay
